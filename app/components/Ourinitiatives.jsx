@@ -2,7 +2,7 @@
 
 import React, { useRef, useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Calendar } from "lucide-react";
 
 // --- Card Component ---
 function InitiativeCard({ initiative, size }) {
@@ -138,7 +138,31 @@ export default function InitiativesSection() {
         </motion.div>
 
         {loading ? (
-          <p className="text-center text-gray-400">Loading events...</p>
+          <div className="flex items-center justify-center py-12">
+            <div className="text-center">
+              <div className="w-8 h-8 border-2 border-blue-500/30 border-t-blue-500 rounded-full animate-spin mx-auto mb-4" />
+              <p className="text-gray-400">Loading events...</p>
+            </div>
+          </div>
+        ) : initiatives.length === 0 ? (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center py-16"
+          >
+            <div className="bg-gray-800/30 backdrop-blur-lg rounded-2xl p-12 border border-gray-700/50 max-w-md mx-auto">
+              <div className="w-16 h-16 bg-blue-600/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Calendar size={32} className="text-blue-400" />
+              </div>
+              <h3 className="text-xl font-semibold text-white mb-3">No Events Available</h3>
+              <p className="text-gray-400 mb-6">
+                We're currently working on organizing new initiatives. Check back soon for exciting events and programs!
+              </p>
+              <div className="text-sm text-gray-500">
+                Want to stay updated? Contact us to be notified about upcoming events.
+              </div>
+            </div>
+          </motion.div>
         ) : (
           <motion.div
             className="grid grid-cols-1 gap-8 md:grid-cols-2"

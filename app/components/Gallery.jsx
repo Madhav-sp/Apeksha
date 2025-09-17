@@ -2,30 +2,101 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Image } from "lucide-react";
 
 export default function GallerySection() {
   const [galleryImages, setGalleryImages] = useState([]);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   // Fetch gallery data from backend
   useEffect(() => {
     async function fetchGallery() {
       try {
+        setLoading(true);
         const res = await fetch("/api/gallery");
         if (!res.ok) throw new Error("Failed to fetch gallery");
         const data = await res.json();
         setGalleryImages(data);
       } catch (err) {
         console.error(err);
+      } finally {
+        setLoading(false);
       }
     }
     fetchGallery();
   }, []);
 
+  if (loading) {
+    return (
+      <div className="relative flex h-screen w-full flex-col overflow-hidden bg-black">
+        {/* Section Header */}
+        <motion.div
+          className="absolute top-8 left-0 right-0 z-20 text-center"
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+        >
+          <h1 className="text-4xl font-bold text-white sm:text-5xl">
+            Gallery
+          </h1>
+          <p className="mt-2 text-gray-300">
+            Explore our journey through images
+          </p>
+        </motion.div>
+
+        {/* Loading State */}
+        <div className="flex h-full items-center justify-center">
+          <div className="text-center">
+            <div className="w-8 h-8 border-2 border-purple-500/30 border-t-purple-500 rounded-full animate-spin mx-auto mb-4" />
+            <p className="text-gray-400">Loading gallery...</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   if (galleryImages.length === 0) {
     return (
-      <div className="flex h-screen w-full items-center justify-center bg-black text-white">
-        Loading gallery...
+      <div className="relative flex h-screen w-full flex-col overflow-hidden bg-black">
+        {/* Section Header */}
+        <motion.div
+          className="absolute top-8 left-0 right-0 z-20 text-center"
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+        >
+          <h1 className="text-4xl font-bold text-white sm:text-5xl">
+            Gallery
+          </h1>
+          <p className="mt-2 text-gray-300">
+            Explore our journey through images
+          </p>
+        </motion.div>
+
+        {/* Empty State */}
+        <div className="flex h-full items-center justify-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center"
+          >
+            <div className="bg-gray-800/30 backdrop-blur-lg rounded-2xl p-12 border border-gray-700/50 max-w-md mx-auto">
+              <div className="w-16 h-16 bg-purple-600/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                <Image size={32} className="text-purple-400" />
+              </div>
+              <h3 className="text-xl font-semibold text-white mb-3">No Images Available</h3>
+              <p className="text-gray-400 mb-6">
+                We're currently updating our gallery with new photos from our recent events and activities.
+              </p>
+              <div className="text-sm text-gray-500">
+                Check back soon to see our latest moments and memories!
+              </div>
+            </div>
+          </motion.div>
+        </div>
       </div>
     );
   }
