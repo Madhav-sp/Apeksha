@@ -1,5 +1,27 @@
 @import "tailwindcss";
+/* Add this to your global CSS file (globals.css or styles.css) */
 
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap');
+
+.font-handwriting {
+  font-family: 'Caveat', cursive;
+  font-weight: 500;
+}
+
+/* Alternative handwriting fonts you can try */
+/* 
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&display=swap');
+.font-handwriting {
+  font-family: 'Dancing Script', cursive;
+}
+*/
+
+/* 
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&display=swap');
+.font-handwriting {
+  font-family: 'Kalam', cursive;
+}
+*/
 :root {
   --background: #ffffff;
   --foreground: #171717;
