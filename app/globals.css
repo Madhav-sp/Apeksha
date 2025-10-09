@@ -1,5 +1,8 @@
 @import "tailwindcss";
 /* Add this to your global CSS file (globals.css or styles.css) */
+body {
+  font-family: var(--font-bricolage), sans-serif;
+}
 
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap');
 

@@ -1,15 +1,12 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  variable: "--font-bricolage",
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
 });
 
 export const metadata = {
@@ -19,11 +16,11 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <Navbar/>
+    <html lang="en" className={bricolage.variable}>
+      {" "}
+      {/* ✅ put it here */}
+      <body className="antialiased">
+        <Navbar />
         {children}
       </body>
     </html>

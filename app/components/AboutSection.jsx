@@ -3,28 +3,33 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 const initiatives = [
   {
     title: "Education Programs",
+    slug: "education-programs",
     description:
       "Our mission is to close the gap in access to quality education, promoting a comprehensive understanding of the world and fostering tolerant, inclusive societies.",
     image: "/apeksha_herologo.png",
   },
   {
     title: "Talent Showcase",
+    slug: "talent-showcase",
     description:
       "We build platforms where students can showcase diverse talents, from arts to technology, helping them gain confidence and recognition for their unique skills.",
     image: "/talent.jpg",
   },
   {
     title: "Social Change",
+    slug: "social-change",
     description:
       "To be the voice of youth, we lead community-focused projects and awareness campaigns that address local challenges and drive meaningful social change.",
     image: "/socialchange.jpeg",
   },
   {
     title: "Leadership Building",
+    slug: "leadership-building",
     description:
       "Shaping the leaders of tomorrow is core to our vision. We offer workshops and real-world opportunities for students to develop crucial leadership skills.",
     image: "/leadership.jpeg",
@@ -54,7 +59,7 @@ export default function AboutSection() {
           transition={{ duration: 0.6 }}
           className="text-center text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl"
         >
-          Our Mission in Action
+          Upcoming Mission in Action
         </motion.h2>
 
         {/* Interactive Circles */}
@@ -62,12 +67,12 @@ export default function AboutSection() {
           {initiatives.map((item, index) => {
             const isActive = index === activeIndex;
             return (
-              <motion.div
-                key={item.title}
-                className="relative flex h-48 w-48 sm:h-56 sm:w-56 md:h-64 md:w-64 flex-shrink-0 flex-col items-center justify-center rounded-full shadow-lg transition-transform duration-300 hover:scale-105"
-                animate={{ scale: isActive ? 1.08 : 1 }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              >
+              <Link key={item.title} href={`/mission/${item.slug}`}>
+                <motion.div
+                  className="relative flex h-48 w-48 sm:h-56 sm:w-56 md:h-64 md:w-64 flex-shrink-0 flex-col items-center justify-center rounded-full shadow-lg transition-transform duration-300 hover:scale-105 cursor-pointer"
+                  animate={{ scale: isActive ? 1.08 : 1 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                >
                 {/* Background Image */}
                 <AnimatePresence>
                   {isActive && (
@@ -103,7 +108,8 @@ export default function AboutSection() {
                     item.title
                   )}
                 </motion.h3>
-              </motion.div>
+                </motion.div>
+              </Link>
             );
           })}
         </div>
@@ -126,13 +132,13 @@ export default function AboutSection() {
           </div>
 
           <div className="flex justify-center lg:justify-end">
-            <a
-              href="#"
+            <Link
+              href={`/mission/${initiatives[activeIndex].slug}`}
               className="group inline-flex items-center gap-2 rounded-full border border-gray-600 px-6 py-3 text-base font-medium text-gray-300 transition-all hover:border-white hover:bg-white/10 hover:text-white"
             >
               Learn more
               <ArrowRight className="h-5 w-5 text-gray-400 transition-transform group-hover:translate-x-1 group-hover:text-white" />
-            </a>
+            </Link>
           </div>
         </div>
       </div>

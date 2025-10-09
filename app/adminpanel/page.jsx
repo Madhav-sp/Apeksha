@@ -31,6 +31,7 @@ export default function AdminPanel() {
     date: "",
     venue: "",
     image: "",
+    formLink: "",
   });
   const [editingEvent, setEditingEvent] = useState(null);
   const [showEventForm, setShowEventForm] = useState(false);
@@ -89,7 +90,7 @@ export default function AdminPanel() {
       });
       
       if (res.ok) {
-        setNewEvent({ title: "", description: "", price: "", date: "", venue: "", image: "" });
+        setNewEvent({ title: "", description: "", price: "", date: "", venue: "", image: "", formLink: "" });
         setShowEventForm(false);
         fetchEvents();
       } else {
@@ -163,7 +164,7 @@ export default function AdminPanel() {
   function cancelEditEvent() {
     setEditingEvent(null);
     setShowEventForm(false);
-    setNewEvent({ title: "", description: "", price: "", date: "", venue: "", image: "" });
+    setNewEvent({ title: "", description: "", price: "", date: "", venue: "", image: "", formLink: "" });
   }
 
   // Gallery functions
@@ -535,6 +536,21 @@ export default function AdminPanel() {
                           </div>
                         </div>
 
+                        <div>
+                          <label className="block text-sm font-medium text-gray-300 mb-2">Form Link (Google Form URL)</label>
+                          <input
+                            type="url"
+                            placeholder="https://forms.gle/..."
+                            className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200"
+                            value={editingEvent ? editingEvent.formLink : newEvent.formLink}
+                            onChange={(e) => editingEvent 
+                              ? setEditingEvent({...editingEvent, formLink: e.target.value})
+                              : setNewEvent({...newEvent, formLink: e.target.value})
+                            }
+                          />
+                          <p className="text-xs text-gray-500 mt-1">Optional: Add a Google Form link for event registration</p>
+                        </div>
+
                         <div className="flex gap-3 pt-4">
                           <motion.button
           type="submit"
@@ -611,6 +627,12 @@ export default function AdminPanel() {
                                 <Calendar size={14} />
                                 {event.date ? new Date(event.date).toLocaleDateString() : 'No date set'}
                               </div>
+                              {event.formLink && (
+                                <div className="flex items-center gap-1 text-blue-400">
+                                  <Link size={14} />
+                                  Has Form Link
+                                </div>
+                              )}
                             </div>
             </div>
                           <div className="flex items-center gap-2 ml-4">

@@ -29,18 +29,16 @@ export default function GallerySection() {
 
   if (loading) {
     return (
-      <div className="relative flex h-screen w-full flex-col overflow-hidden bg-black">
+      <div className="relative flex h-screen w-full flex-col overflow-hidden bg-black pt-32">
         {/* Section Header */}
         <motion.div
-          className="absolute top-8 left-0 right-0 z-20 text-center"
+          className="text-center"
           initial={{ opacity: 0, y: -30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-4xl font-bold text-white sm:text-5xl">
-            Gallery
-          </h1>
+          <h1 className="text-4xl font-bold text-white sm:text-5xl">Gallery</h1>
           <p className="mt-2 text-gray-300">
             Explore our journey through images
           </p>
@@ -59,18 +57,16 @@ export default function GallerySection() {
 
   if (galleryImages.length === 0) {
     return (
-      <div className="relative flex h-screen w-full flex-col overflow-hidden bg-black">
+      <div className="relative flex h-screen w-full flex-col overflow-hidden bg-black pt-32">
         {/* Section Header */}
         <motion.div
-          className="absolute top-8 left-0 right-0 z-20 text-center"
+          className="text-center"
           initial={{ opacity: 0, y: -30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-4xl font-bold text-white sm:text-5xl">
-            Gallery
-          </h1>
+          <h1 className="text-4xl font-bold text-white sm:text-5xl">Gallery</h1>
           <p className="mt-2 text-gray-300">
             Explore our journey through images
           </p>
@@ -87,9 +83,12 @@ export default function GallerySection() {
               <div className="w-16 h-16 bg-purple-600/20 rounded-full flex items-center justify-center mx-auto mb-6">
                 <Image size={32} className="text-purple-400" />
               </div>
-              <h3 className="text-xl font-semibold text-white mb-3">No Images Available</h3>
+              <h3 className="text-xl font-semibold text-white mb-3">
+                No Images Available
+              </h3>
               <p className="text-gray-400 mb-6">
-                We're currently updating our gallery with new photos from our recent events and activities.
+                We're currently updating our gallery with new photos from our
+                recent events and activities.
               </p>
               <div className="text-sm text-gray-500">
                 Check back soon to see our latest moments and memories!
@@ -104,22 +103,19 @@ export default function GallerySection() {
   const selectedImage = galleryImages[activeIndex];
 
   return (
-    <div className="relative flex h-screen w-full flex-col overflow-hidden bg-black">
+    <div className="relative flex h-screen w-full flex-col overflow-hidden bg-black pt-32">
       {/* Section Header */}
       <motion.div
-        className="absolute top-8 left-0 right-0 z-20 text-center"
+        className="text-center mb-6"
         initial={{ opacity: 0, y: -30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
         transition={{ duration: 0.8 }}
       >
-        <h1 className="text-4xl font-bold text-white sm:text-5xl">
-          Gallery
-        </h1>
-        <p className="mt-2 text-gray-300">
-          Explore our journey through images
-        </p>
+        <h1 className="text-4xl font-bold text-white sm:text-5xl">Gallery</h1>
+        <p className="mt-2 text-gray-300">Explore our journey through images</p>
       </motion.div>
+
       {/* --- Main Image Display --- */}
       <div
         className="relative flex flex-1 cursor-pointer items-center justify-center"
@@ -137,10 +133,10 @@ export default function GallerySection() {
             <img
               src={selectedImage.src}
               alt={selectedImage.title}
-              className="h-full w-full object-cover"
+              className="h-full w-full object-cover blur-lg"
             />
-            {/* Gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-black/40 backdrop-blur-md" />
           </motion.div>
         </AnimatePresence>
 
@@ -177,7 +173,6 @@ export default function GallerySection() {
                 alt={image.title}
                 className="h-full w-full object-cover"
               />
-              {/* Active indicator */}
               {activeIndex === index && (
                 <motion.div
                   layoutId="active-indicator"

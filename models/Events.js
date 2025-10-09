@@ -27,6 +27,10 @@ const EventSchema = new mongoose.Schema(
       type: String, // store image URL or Cloudinary link
       required: true,
     },
+    formLink: {
+      type: String, // Google form link
+      required: false,
+    },
   },
   { timestamps: true }
 );
