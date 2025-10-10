@@ -48,8 +48,8 @@ export default function AdminPanel() {
   const [showGalleryForm, setShowGalleryForm] = useState(false);
 
   // Hardcoded credentials
-  const ADMIN_EMAIL = "apekshafoundation@gmail.com";
-  const ADMIN_PASS = "apeksha@none23";
+  const ADMIN_EMAIL = "apekshahyderabad@gmail.com";
+  const ADMIN_PASS = "apeksha@8919899806";
 
   // Check for existing login on component mount
   useEffect(() => {
