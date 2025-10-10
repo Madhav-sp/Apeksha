@@ -22,14 +22,14 @@ export default function ContactSection() {
 
         <p className="text-lg sm:text-xl text-gray-300 mb-12 leading-relaxed">
           We are at St. Martin’s Engineering College. Forms for application are{" "}
-          <span className="text-red-500 font-semibold">closed</span>. For
+          <span className="text-blue-300 font-semibold">closed</span>. For
           collaborations, inquiries, or support, you can contact us below.
         </p>
 
         <div className="space-y-6 text-left">
           {/* Email */}
           <motion.div whileHover={{ x: 5 }} className="flex items-center gap-4">
-            <Mail className="w-6 h-6 text-red-500" />
+            <Mail className="w-6 h-6 text-blue-300" />
             <div>
               <h4 className="text-white font-medium">Email</h4>
               <p className="text-gray-300">apekshasmec@gmail.com</p>
@@ -38,7 +38,7 @@ export default function ContactSection() {
 
           {/* Phone */}
           <motion.div whileHover={{ x: 5 }} className="flex items-center gap-4">
-            <Phone className="w-6 h-6 text-red-500" />
+            <Phone className="w-6 h-6 text-blue-300" />
             <div>
               <h4 className="text-white font-medium">Phone</h4>
               <p className="text-gray-300">+91 6303404492</p>
@@ -47,7 +47,7 @@ export default function ContactSection() {
 
           {/* Location */}
           <motion.div whileHover={{ x: 5 }} className="flex items-center gap-4">
-            <MapPin className="w-6 h-6 text-red-500" />
+            <MapPin className="w-6 h-6 text-blue-300" />
             <div>
               <h4 className="text-white font-medium">Location</h4>
               <p className="text-gray-300">Hyderabad, Telangana, India</p>
